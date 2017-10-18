@@ -1,0 +1,193 @@
+  
+  [1X1 [33X[0;0YUsage[133X[101X
+  
+  
+  [1X1.1 [33X[0;0YInstallation[133X[101X
+  
+  [33X[0;0YDownload und unpack the file[133X
+  
+  [33X[0;0Y[7Xhttp://www.math.u-szeged.hu/~nagyg/OnAlgClosure-0.1.tar.gz[107X[133X
+  
+  [33X[0;0Yinto your pkg directory. You can load the package with the command[133X
+  
+  [33X[0;0Y[10XLoadPackage("OnAlgClosure");[110X[133X
+  
+  
+  [1X1.2 [33X[0;0YFunctions for AC-Frobenius automorphism actions[133X[101X
+  
+  [1X1.2-1 AC_FrobeniusAutomorphism[101X
+  
+  [29X[2XAC_FrobeniusAutomorphism[102X( [3Xq[103X ) [32X function
+  [6XReturns:[106X  [33X[0;10Yan AC-Frobenius automorphism[133X
+  
+  [33X[0;0YCreates  the  Frobenius  map  [23Xx->x^q[123X for the prime power [3Xq[103X which operates on
+  objects   of   characteristic   [23Xp[123X:   vectors,   matrices   (also   in   [5XCVEC[105X
+  representation), polynomials and rational functions. The argument may be the
+  finite field [10XGF(q)[110X as well.[133X
+  
+  [33X[0;0YAlthough  algebraic  closure  is  not  defined  in  [5XGAP[105X  one  can  say  that
+  AC-Frobenius  automorphisms  act on the algebraic closure of the prime field
+  [10XGF(p)[110X.[133X
+  
+  [33X[0;0YAn  AC-Frobenius  automorphism has infinite order. By default, no inverse of
+  an  AC-Frobenius automorphism is defined. AC-Frobenius automorphisms are not
+  mapping as [5XGAP[105X objects.[133X
+  
+  [33X[0;0YThese are the main differences to the [5XGAP[105X command [10XFrobeniusAutomorphism[110X.[133X
+  
+  [33X[0;0YIt  must  be  easy  to  install  methods  for  the action of an AC-Frobenius
+  automorphism on new classes of objects.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xfr:=AC_FrobeniusAutomorphism(9);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(3^2)[128X[104X
+    [4X[25Xgap>[125X [27XZ(3)^fr;[127X[104X
+    [4X[28XZ(3)[128X[104X
+    [4X[25Xgap>[125X [27XZ(27)^fr;[127X[104X
+    [4X[28XZ(3^3)^9[128X[104X
+    [4X[25Xgap>[125X [27Xv:=Random(GF(27)^5);[127X[104X
+    [4X[28X[ Z(3)^0, Z(3^3)^23, Z(3^3)^23, Z(3^3)^17, Z(3)^0 ][128X[104X
+    [4X[25Xgap>[125X [27Xv^fr;[127X[104X
+    [4X[28X[ Z(3)^0, Z(3^3)^25, Z(3^3)^25, Z(3^3)^23, Z(3)^0 ][128X[104X
+    [4X[25Xgap>[125X [27Xcv:=CVec(v);[127X[104X
+    [4X[28X<cvec over GF(3,3) of length 5>[128X[104X
+    [4X[25Xgap>[125X [27Xcv^fr;[127X[104X
+    [4X[28X<cvec over GF(3,3) of length 5>[128X[104X
+    [4X[25Xgap>[125X [27Xcv^fr=v^fr;[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xfr:=AC_FrobeniusAutomorphism(7^2);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(7^2)[128X[104X
+    [4X[25Xgap>[125X [27Xx:=Indeterminate(GF(7),"x");;[127X[104X
+    [4X[25Xgap>[125X [27Xpol:=(x^3-Z(7))/(x^2-Z(7^3));[127X[104X
+    [4X[28X(x^3+Z(7)^4)/(x^2+Z(7^3)^172)[128X[104X
+    [4X[25Xgap>[125X [27Xpol^fr;[127X[104X
+    [4X[28X(x^3+Z(7)^4)/(x^2+Z(7^3)^220)[128X[104X
+    [4X[25Xgap>[125X [27Xpol=pol^(fr^3);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAC-Frobenius  automorphisms of the same characteristic can be multiplied and
+  share a unique multiplicative identity.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xfr:=AC_FrobeniusAutomorphism(9);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(3^2)[128X[104X
+    [4X[25Xgap>[125X [27Xfr^2;[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(3^4)[128X[104X
+    [4X[25Xgap>[125X [27XOne(fr);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(3^0)[128X[104X
+    [4X[25Xgap>[125X [27XAC_FrobeniusAutomorphism(8)*AC_FrobeniusAutomorphism(16);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(2^7)[128X[104X
+    [4X[25Xgap>[125X [27XOne(last)=One(fr);[127X[104X
+    [4X[28Xfalse[128X[104X
+  [4X[32X[104X
+  
+  [1X1.2-2 AC_FrobeniusAutomorphismOrbit[101X
+  
+  [29X[2XAC_FrobeniusAutomorphismOrbit[102X( [3Xfr[103X, [3Xobj[103X ) [32X function
+  [6XReturns:[106X  [33X[0;10Ythe Frobenius orbit of the given object as list[133X
+  
+  [33X[0;0YThe (i+1)th element of the Frobenius orbit is [23Xobj^(fr^i)[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xfr:=AC_FrobeniusAutomorphism(7^2);[127X[104X
+    [4X[28XAC_FrobeniusAutomorphism(7^2)[128X[104X
+    [4X[25Xgap>[125X [27Xm:=[[0*Z(7),Z(7^3)],[Z(7^4)^-1,Z(7)^0]];[127X[104X
+    [4X[28X[ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2399, Z(7)^0 ] ][128X[104X
+    [4X[25Xgap>[125X [27XAC_FrobeniusAutomorphismOrbit(fr,m);[127X[104X
+    [4X[28X[ [ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3)^49 ], [ Z(7^4)^2351, Z(7)^0 ] ], [128X[104X
+    [4X[28X  [ [ 0*Z(7), Z(7^3)^7 ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2351, Z(7)^0 ] ], [128X[104X
+    [4X[28X  [ [ 0*Z(7), Z(7^3)^49 ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3)^7 ], [ Z(7^4)^2351, Z(7)^0 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAn  AC-Frobenius  automorphism has infinite order. By default, no inverse of
+  an  AC-Frobenius automorphism is defined. AC-Frobenius automorphisms are not
+  mapping  as  [5XGAP[105X  objects. If you want, they act on the algebraic closure of
+  the  prime  field  [10XGF(p)[110X. In fact, these are the main differences to the [5XGAP[105X
+  command [10XFrobeniusAutomorphism[110X.[133X
+  
+  [33X[0;0YIt  must  be  easy  to  install  methods  for  the action of an AC-Frobenius
+  automorphism on new classes of objects.[133X
+  
+  
+  [1X1.3 [33X[0;0YFunctions for AC-projective linear transformations[133X[101X
+  
+  [1X1.3-1 AC_ProjectiveLinearTransformation[101X
+  
+  [29X[2XAC_ProjectiveLinearTransformation[102X( [3XM[103X ) [32X function
+  [6XReturns:[106X  [33X[0;10Yan AC-projective linear transformation[133X
+  
+  [33X[0;0YCreates  the  projective  linear transformation [23X\varphi[123X corresponding to the
+  [23Xn\times  n[123X  matrix  [3XM[103X. Here, [3XM[103X is a nonsingular matrix over the finite field
+  [10XGF(q)[110X.  By  definition  [23X\varphi[123X  acts via [10XOnLines[110X on row vectors of length [23Xn[123X
+  with entries from the algebraic closure of [10XGF(q)[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xm1:=[[ Z(5^2), 0*Z(5), 0*Z(5) ],[ 0*Z(5), Z(5)^0, 0*Z(5) ],[ 0*Z(5), 0*Z(5), Z(5^2)^19 ]];;[127X[104X
+    [4X[25Xgap>[125X [27Xm2:=[[ Z(5^2)^13, Z(5)^2, Z(5)^0 ],[ Z(5)^2, Z(5)^2, 0*Z(5) ],[ Z(5)^0, 0*Z(5), 0*Z(5) ]];;[127X[104X
+    [4X[25Xgap>[125X [27Xt1:=AC_ProjectiveLinearTransformation(m1);[127X[104X
+    [4X[28XAC_ProjectiveLinearTransformation([ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5^2)^23, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^3 ] ])[128X[104X
+    [4X[25Xgap>[125X [27Xt2:=AC_ProjectiveLinearTransformation(m2);[127X[104X
+    [4X[28XAC_ProjectiveLinearTransformation([ [ Z(5)^0, Z(5^2)^23, Z(5^2)^11 ], [ Z(5^2)^23, Z(5^2)^23, 0*Z(5) ], [128X[104X
+    [4X[28X  [ Z(5^2)^11, 0*Z(5), 0*Z(5) ] ])[128X[104X
+    [4X[25Xgap>[125X [27XOrder(t1);[127X[104X
+    [4X[28X24[128X[104X
+    [4X[25Xgap>[125X [27Xt1*t2;[127X[104X
+    [4X[28XAC_ProjectiveLinearTransformation([ [ Z(5)^0, Z(5^2)^23, Z(5^2)^11 ], [ Z(5^2)^22, Z(5^2)^22, 0*Z(5) ], [128X[104X
+    [4X[28X  [ Z(5^2)^5, 0*Z(5), 0*Z(5) ] ])[128X[104X
+    [4X[25Xgap>[125X [27Xt1/t2;[127X[104X
+    [4X[28XAC_ProjectiveLinearTransformation([ [ 0*Z(5), 0*Z(5), Z(5)^0 ], [ 0*Z(5), Z(5^2)^11, Z(5^2)^11 ], [ Z(5)^3, Z(5), Z(5^2)^11 ] ])[128X[104X
+    [4X[25Xgap>[125X [27XOne(t1);[127X[104X
+    [4X[28XAC_ProjectiveLinearTransformation([ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ])[128X[104X
+    [4X[25Xgap>[125X [27XCharacteristic(t1);[127X[104X
+    [4X[28X5[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAC-projective   linear   transformations  of  the  same  characteristic  and
+  dimension  can  be  multiplied,  possess  an  inverse  AC-projective  linear
+  transformation and share a unique multiplicative identity.[133X
+  
+  [33X[0;0YAC-proejctive  linear  transformations  defined  over  [10XGF(q)[110X  have a regular
+  permutation  action  on [23XPG(n-1,q)[123X. Via nice monomorphism, [23X\varphi[123X knows this
+  permutation.  This  enables  efficient  arithmetics  for groups generated by
+  AC-projective linear transformations.[133X
+  
+  [33X[0;0YIt  must  be  easy  to  implement  other  actions  of  AC-projective  linear
+  transformations on GAP objects.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xq:=5;[127X[104X
+    [4X[28X5[128X[104X
+    [4X[25Xgap>[125X [27Xmg:=GU(3,q);[127X[104X
+    [4X[28XGU(3,5)[128X[104X
+    [4X[25Xgap>[125X [27XSize(mg);[127X[104X
+    [4X[28X2268000[128X[104X
+    [4X[25Xgap>[125X [27Xoset:=Orbit(mg,Z(q)^0*[0,0,1],OnLines);; [127X[104X
+    [4X[25Xgap>[125X [27XSize(oset); q^3+1;[127X[104X
+    [4X[28X126[128X[104X
+    [4X[28X126[128X[104X
+    [4X[25Xgap>[125X [27Xpg:=AC_ProjectiveTransformationGroupWithShortOrbit(mg,oset);[127X[104X
+    [4X[28X<group with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27XSize(pg); Size(PGU(3,q));[127X[104X
+    [4X[28X378000[128X[104X
+    [4X[28X378000[128X[104X
+    [4X[25Xgap>[125X [27Xvec:=Z(q)*[1,Z(q^3),0];[127X[104X
+    [4X[28X[ Z(5), Z(5^3)^32, 0*Z(5) ][128X[104X
+    [4X[25Xgap>[125X [27XOrbitLength(pg,NormedRowVector(vec));[127X[104X
+    [4X[28X75600[128X[104X
+    [4X[25Xgap>[125X [27XStructureDescription(pg);[127X[104X
+    [4X[28X"PSU(3,5) : C3"[128X[104X
+  [4X[32X[104X
+  
+  [1X1.3-2 AC_ProjectiveTransformationGroupWithShortOrbit[101X
+  
+  [29X[2XAC_ProjectiveTransformationGroupWithShortOrbit[102X( [3Xmatgr[103X, [3Xorb[103X ) [32X function
+  [6XReturns:[106X  [33X[0;10Ya projective linear cycle[133X
+  
+  [33X[0;0YCreates the AC-projective linear transformation group [23XG[123X corresponding to the
+  matrix group [3Xmatgr[103X. [10Xmatgr[110X must have a faithful action on the orbit [3Xorb[103X. This
+  permutation action is stored as nice monomorphism of [23XG[123X.[133X
+  

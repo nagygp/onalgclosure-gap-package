@@ -1,0 +1,21 @@
+#SIXFORMAT  GapDocGAP
+HELPBOOKINFOSIXTMP := rec(
+encoding := "UTF-8",
+bookname := "OnAlgClosure",
+entries :=
+[ [ "Title page", ".", [ 0, 0, 0 ], 1, 1, "title page", "X7D2C85EC87DD46E5" ], 
+  [ "Table of Contents", ".-1", [ 0, 0, 1 ], 30, 2, "table of contents", "X8537FEB07AF2BEC8" ], 
+  [ "\033[1X\033[33X\033[0;-2YUsage\033[133X\033[101X", "1", [ 1, 0, 0 ], 1, 3, "usage", "X86A9B6F87E619FFF" ], 
+  [ "\033[1X\033[33X\033[0;-2YInstallation\033[133X\033[101X", "1.1", [ 1, 1, 0 ], 4, 3, "installation", "X8360C04082558A12" ], 
+  [ "\033[1X\033[33X\033[0;-2YFunctions for AC-Frobenius automorphism actions\033[133X\033[101X", "1.2", [ 1, 2, 0 ], 15, 3, 
+      "functions for ac-frobenius automorphism actions", "X8365BFD187A21BF7" ], 
+  [ "\033[1X\033[33X\033[0;-2YFunctions for AC-projective linear transformations\033[133X\033[101X", "1.3", [ 1, 3, 0 ], 115, 5, 
+      "functions for ac-projective linear transformations", "X809ED78B82924069" ], 
+  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 7, "index", "X83A0356F839C696F" ], 
+  [ "\033[2XAC_FrobeniusAutomorphism\033[102X", "1.2-1", [ 1, 2, 1 ], 18, 3, "ac_frobeniusautomorphism", "X807441667D5D76BB" ], 
+  [ "\033[2XAC_FrobeniusAutomorphismOrbit\033[102X", "1.2-2", [ 1, 2, 2 ], 88, 4, "ac_frobeniusautomorphismorbit", 
+      "X7ABD25CA7A40D677" ], [ "\033[2XAC_ProjectiveLinearTransformation\033[102X", "1.3-1", [ 1, 3, 1 ], 118, 5, 
+      "ac_projectivelineartransformation", "X7CD817EA7F9B1EA3" ], 
+  [ "\033[2XAC_ProjectiveTransformationGroupWithShortOrbit\033[102X", "1.3-2", [ 1, 3, 2 ], 185, 6, 
+      "ac_projectivetransformationgroupwithshortorbit", "X870D421C7BB5E273" ] ]
+);

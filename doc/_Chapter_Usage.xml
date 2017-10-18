@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<Chapter Label="Chapter_Usage">
+<Heading>Usage</Heading>
+
+<Section Label="Chapter_Usage_Section_Installation">
+<Heading>Installation</Heading>
+
+Download und unpack the file <P/>
+<URL>http://www.math.u-szeged.hu/~nagyg/OnAlgClosure-0.1.tar.gz</URL><P/>
+into your pkg directory. You can load the package with the command<P/>
+<C>LoadPackage("OnAlgClosure");</C><P/>
+</Section>
+
+
+<Section Label="Chapter_Usage_Section_Functions_for_AC-Frobenius_automorphism_actions">
+<Heading>Functions for AC-Frobenius automorphism actions</Heading>
+
+<ManSection>
+  <Func Arg="q" Name="AC_FrobeniusAutomorphism" />
+ <Returns>an AC-Frobenius automorphism
+</Returns>
+ <Description>
+Creates the Frobenius map <Math>x->x^q</Math> for the prime power <A>q</A> which
+operates on objects of characteristic <Math>p</Math>: vectors, matrices (also in
+<Package>CVEC</Package> representation), polynomials and rational functions.
+The argument may be the finite field <C>GF(q)</C> as well.
+ </Description>
+</ManSection>
+
+
+Although algebraic closure is not defined in &GAP; one can say that AC-Frobenius automorphisms act on the algebraic closure of the prime field <C>GF(p)</C>.
+<P/>An AC-Frobenius automorphism has infinite order. By default, no inverse of an AC-Frobenius automorphism is defined.
+AC-Frobenius automorphisms are not mapping as &GAP; objects.
+<P/>These are the main differences to the &GAP; command <C>FrobeniusAutomorphism</C>.
+<P/>It must be easy to install methods for the action of an AC-Frobenius automorphism on new classes of objects.
+<Example><![CDATA[
+gap> fr:=AC_FrobeniusAutomorphism(9);
+AC_FrobeniusAutomorphism(3^2)
+gap> Z(3)^fr;
+Z(3)
+gap> Z(27)^fr;
+Z(3^3)^9
+gap> v:=Random(GF(27)^5);
+[ Z(3)^0, Z(3^3)^23, Z(3^3)^23, Z(3^3)^17, Z(3)^0 ]
+gap> v^fr;
+[ Z(3)^0, Z(3^3)^25, Z(3^3)^25, Z(3^3)^23, Z(3)^0 ]
+gap> cv:=CVec(v);
+<cvec over GF(3,3) of length 5>
+gap> cv^fr;
+<cvec over GF(3,3) of length 5>
+gap> cv^fr=v^fr;
+true
+]]></Example>
+
+
+<Example><![CDATA[
+gap> fr:=AC_FrobeniusAutomorphism(7^2);
+AC_FrobeniusAutomorphism(7^2)
+gap> x:=Indeterminate(GF(7),"x");;
+gap> pol:=(x^3-Z(7))/(x^2-Z(7^3));
+(x^3+Z(7)^4)/(x^2+Z(7^3)^172)
+gap> pol^fr;
+(x^3+Z(7)^4)/(x^2+Z(7^3)^220)
+gap> pol=pol^(fr^3);
+true
+]]></Example>
+
+
+
+AC-Frobenius automorphisms of the same characteristic can be multiplied
+and share a unique multiplicative identity.
+<Example><![CDATA[
+gap> fr:=AC_FrobeniusAutomorphism(9);
+AC_FrobeniusAutomorphism(3^2)
+gap> fr^2;
+AC_FrobeniusAutomorphism(3^4)
+gap> One(fr);
+AC_FrobeniusAutomorphism(3^0)
+gap> AC_FrobeniusAutomorphism(8)*AC_FrobeniusAutomorphism(16);
+AC_FrobeniusAutomorphism(2^7)
+gap> One(last)=One(fr);
+false
+]]></Example>
+
+
+
+<ManSection>
+  <Func Arg="fr,obj" Name="AC_FrobeniusAutomorphismOrbit" />
+ <Returns>the Frobenius orbit of the given object as list
+</Returns>
+ <Description>
+The (i+1)th element of the Frobenius orbit is <Math>obj^(fr^i)</Math>.
+ </Description>
+</ManSection>
+
+
+<Example><![CDATA[
+gap> fr:=AC_FrobeniusAutomorphism(7^2);
+AC_FrobeniusAutomorphism(7^2)
+gap> m:=[[0*Z(7),Z(7^3)],[Z(7^4)^-1,Z(7)^0]];
+[ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2399, Z(7)^0 ] ]
+gap> AC_FrobeniusAutomorphismOrbit(fr,m);
+[ [ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3)^49 ], [ Z(7^4)^2351, Z(7)^0 ] ], 
+  [ [ 0*Z(7), Z(7^3)^7 ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3) ], [ Z(7^4)^2351, Z(7)^0 ] ], 
+  [ [ 0*Z(7), Z(7^3)^49 ], [ Z(7^4)^2399, Z(7)^0 ] ], [ [ 0*Z(7), Z(7^3)^7 ], [ Z(7^4)^2351, Z(7)^0 ] ] ]
+]]></Example>
+
+
+
+An AC-Frobenius automorphism has infinite order. By default, no inverse of an AC-Frobenius automorphism is defined.
+AC-Frobenius automorphisms are not mapping as &GAP; objects. If you want, they act on the algebraic closure of the prime field <C>GF(p)</C>.
+In fact, these are the main differences to the &GAP; command <C>FrobeniusAutomorphism</C>.
+<P/>It must be easy to install methods for the action of an AC-Frobenius automorphism on new classes of objects.
+</Section>
+
+
+<Section Label="Chapter_Usage_Section_Functions_for_AC-projective_linear_transformations">
+<Heading>Functions for AC-projective linear transformations</Heading>
+
+<ManSection>
+  <Func Arg="M" Name="AC_ProjectiveLinearTransformation" />
+ <Returns>an AC-projective linear transformation
+</Returns>
+ <Description>
+Creates the projective linear transformation <Math>\varphi</Math> corresponding to the <Math>n\times n</Math> matrix <A>M</A>.
+Here, <A>M</A> is a nonsingular matrix over the finite field <C>GF(q)</C>. By definition <Math>\varphi</Math> acts
+via <C>OnLines</C> on row vectors of length <Math>n</Math> with entries from the algebraic closure of <C>GF(q)</C>.
+ </Description>
+</ManSection>
+
+
+<Example><![CDATA[
+gap> m1:=[[ Z(5^2), 0*Z(5), 0*Z(5) ],[ 0*Z(5), Z(5)^0, 0*Z(5) ],[ 0*Z(5), 0*Z(5), Z(5^2)^19 ]];;
+gap> m2:=[[ Z(5^2)^13, Z(5)^2, Z(5)^0 ],[ Z(5)^2, Z(5)^2, 0*Z(5) ],[ Z(5)^0, 0*Z(5), 0*Z(5) ]];;
+gap> t1:=AC_ProjectiveLinearTransformation(m1);
+AC_ProjectiveLinearTransformation([ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5^2)^23, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^3 ] ])
+gap> t2:=AC_ProjectiveLinearTransformation(m2);
+AC_ProjectiveLinearTransformation([ [ Z(5)^0, Z(5^2)^23, Z(5^2)^11 ], [ Z(5^2)^23, Z(5^2)^23, 0*Z(5) ], 
+  [ Z(5^2)^11, 0*Z(5), 0*Z(5) ] ])
+gap> Order(t1);
+24
+gap> t1*t2;
+AC_ProjectiveLinearTransformation([ [ Z(5)^0, Z(5^2)^23, Z(5^2)^11 ], [ Z(5^2)^22, Z(5^2)^22, 0*Z(5) ], 
+  [ Z(5^2)^5, 0*Z(5), 0*Z(5) ] ])
+gap> t1/t2;
+AC_ProjectiveLinearTransformation([ [ 0*Z(5), 0*Z(5), Z(5)^0 ], [ 0*Z(5), Z(5^2)^11, Z(5^2)^11 ], [ Z(5)^3, Z(5), Z(5^2)^11 ] ])
+gap> One(t1);
+AC_ProjectiveLinearTransformation([ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ])
+gap> Characteristic(t1);
+5
+]]></Example>
+
+
+
+AC-projective linear transformations of the same characteristic and dimension can be multiplied,
+possess an inverse AC-projective linear transformation and share a unique multiplicative identity.
+<P/>AC-proejctive linear transformations defined over <C>GF(q)</C> have a regular permutation action
+on <Math>PG(n-1,q)</Math>. Via nice monomorphism, <Math>\varphi</Math> knows this permutation. This enables efficient
+arithmetics for groups generated by AC-projective linear transformations.
+<P/>It must be easy to implement other actions of AC-projective linear transformations on GAP objects.
+<Example><![CDATA[
+gap> q:=5;
+5
+gap> mg:=GU(3,q);
+GU(3,5)
+gap> Size(mg);
+2268000
+gap> oset:=Orbit(mg,Z(q)^0*[0,0,1],OnLines);; 
+gap> Size(oset); q^3+1;
+126
+126
+gap> pg:=AC_ProjectiveTransformationGroupWithShortOrbit(mg,oset);
+<group with 2 generators>
+gap> Size(pg); Size(PGU(3,q));
+378000
+378000
+gap> vec:=Z(q)*[1,Z(q^3),0];
+[ Z(5), Z(5^3)^32, 0*Z(5) ]
+gap> OrbitLength(pg,NormedRowVector(vec));
+75600
+gap> StructureDescription(pg);
+"PSU(3,5) : C3"
+]]></Example>
+
+
+
+<ManSection>
+  <Func Arg="matgr,orb" Name="AC_ProjectiveTransformationGroupWithShortOrbit" />
+ <Returns>a projective linear cycle
+</Returns>
+ <Description>
+Creates the AC-projective linear transformation group <Math>G</Math> corresponding to the matrix group <A>matgr</A>.
+<C>matgr</C> must have a faithful action on the orbit <A>orb</A>. This permutation action is stored as
+nice monomorphism of <Math>G</Math>.
+ </Description>
+</ManSection>
+
+
+</Section>
+
+
+</Chapter>
+

@@ -1,0 +1,44 @@
+  
+  
+                                 [1X OnAlgClosure [101X
+  
+  
+  [1X OnAlgClosure/Frobenius and projective linear action on objects of positive
+                                characteristic [101X
+  
+  
+                                      0.1
+  
+  
+                                   07/07/2017
+  
+  
+                                 Gábor P. Nagy
+  
+  
+  
+  Gábor P. Nagy
+      Email:    [7Xmailto:nagyg@math.u-szeged.hu[107X
+      Homepage: [7Xhttp://www.math.u-szeged.hu/~nagyg[107X
+      Address:  [33X[0;14YBolyai Institute of the University of Szeged[133X
+                [33X[0;14YAradi vértanúk tere 1[133X
+                [33X[0;14YH-6720 Szeged (Hungary)[133X
+  
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (OnAlgClosure)[101X
+  
+  1 [33X[0;0YUsage[133X
+    1.1 [33X[0;0YInstallation[133X
+    1.2 [33X[0;0YFunctions for AC-Frobenius automorphism actions[133X
+      1.2-1 AC_FrobeniusAutomorphism
+      1.2-2 AC_FrobeniusAutomorphismOrbit
+    1.3 [33X[0;0YFunctions for AC-projective linear transformations[133X
+      1.3-1 AC_ProjectiveLinearTransformation
+      1.3-2 AC_ProjectiveTransformationGroupWithShortOrbit
+  
+  
+  [32X

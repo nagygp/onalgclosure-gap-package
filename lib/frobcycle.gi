@@ -165,6 +165,7 @@ function( x, fr )
 	fi; 
 end );
 
+#############################################################################
 
 InstallOtherMethod( \^, "for an AC-Frobenius automorphism and a rational function",
 	[ IsRationalFunction, IsAC_FrobeniusAutomorphism ],
@@ -187,6 +188,42 @@ function( c, fr )
 		Error("the arguments must have the same characteristic\n");
 	fi; 
 end );
+
+#############################################################################
+
+InstallMethod( \^, "for an AC-Frobenius automorphism and a finite field element",
+	[ IsAlgebraicElement, IsAC_FrobeniusAutomorphism ],
+function( x, fr )
+	local pw;
+	if Characteristic(x)=Characteristic(fr) then 
+		pw:=fr![1]^fr![2];
+		return x^pw;
+	else
+		Error("the arguments must have the same characteristic\n");
+	fi; 
+end );
+
+InstallOtherMethod( \^, "for an AC-Frobenius automorphism and a finite field vector",
+	[ IsAlgebraicElementCollection, IsAC_FrobeniusAutomorphism ],
+function( x, fr )
+	if Characteristic(x)=Characteristic(fr) then 
+		return List(x, y->y^fr);
+	else
+		Error("the arguments must have the same characteristic\n");
+	fi; 
+end );
+
+InstallOtherMethod( \^, "for an AC-Frobenius automorphism and a finite field matrix",
+	[ IsAlgebraicElementCollColl, IsAC_FrobeniusAutomorphism ],
+function( x, fr )
+	local y;
+	if Characteristic(x)=Characteristic(fr) then 
+		return List(x,y->y^fr);
+	else
+		Error("the arguments must have the same characteristic\n");
+	fi; 
+end );
+
 
 #############################################################################
 ##  FROBENIUS ORBIT
